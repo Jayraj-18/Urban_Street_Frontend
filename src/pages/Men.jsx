@@ -30,7 +30,7 @@ function Men({ darkMode, setDarkMode }) {
       <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
 
       <section ref={ref} className={`container mx-auto px-6 md:px-20 py-12 md:py-24 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
-        
+
         <header className="mb-16">
           <span className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-500 mb-4 block">Collection 2026</span>
           <h1 className="text-4xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tighter uppercase mb-6">

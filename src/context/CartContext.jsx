@@ -12,9 +12,9 @@ function cartReducer(state, action) {
       const payloadId = action.payload._id || action.payload.id;
       const size = action.payload.size;
       const cartKey = `${payloadId}-${size}`;
-      
+
       const existing = state.find((item) => `${item._id || item.id}-${item.size}` === cartKey);
-      
+
       if (existing) {
         // If already in cart with same size, just increase quantity
         return state.map((item) =>

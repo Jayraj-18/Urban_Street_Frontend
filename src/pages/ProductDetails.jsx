@@ -134,13 +134,13 @@ function ProductDetails({ darkMode, setDarkMode }) {
                 <span className="text-3xl font-black text-black dark:text-white">₹{product.price}</span>
                 <span className="text-xs font-bold text-gray-400 uppercase line-through italic">₹{Math.floor(product.price * 1.4)}</span>
                 <span className={`text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full border ${(() => {
-                    const stockVal = selectedSize && product.stock && typeof product.stock === 'object'
-                      ? product.stock[selectedSize]
-                      : (typeof product.stock === 'number' ? product.stock : 0);
-                    return stockVal <= 3
-                      ? "text-red-500 border-red-500/20 bg-red-500/5 animate-pulse"
-                      : "text-indigo-500 border-indigo-500/20 bg-indigo-500/5";
-                  })()
+                  const stockVal = selectedSize && product.stock && typeof product.stock === 'object'
+                    ? product.stock[selectedSize]
+                    : (typeof product.stock === 'number' ? product.stock : 0);
+                  return stockVal <= 3
+                    ? "text-red-500 border-red-500/20 bg-red-500/5 animate-pulse"
+                    : "text-indigo-500 border-indigo-500/20 bg-indigo-500/5";
+                })()
                   }`}>
                   {(() => {
                     if (!selectedSize) return "Select a size to see stock";
@@ -176,10 +176,10 @@ function ProductDetails({ darkMode, setDarkMode }) {
                         disabled={isOutOfStock}
                         onClick={() => setSelectedSize(size)}
                         className={`aspect-square flex items-center justify-center rounded-2xl border-2 transition-all duration-300 font-black text-xs uppercase relative overflow-hidden ${selectedSize === size
-                            ? "bg-black dark:bg-white border-black dark:border-white text-white dark:text-black shadow-xl"
-                            : isOutOfStock
-                              ? "border-gray-50 dark:border-zinc-900 text-gray-200 dark:text-zinc-800 cursor-not-allowed"
-                              : "border-gray-100 dark:border-zinc-800 text-gray-700 dark:text-gray-300 hover:border-indigo-500"
+                          ? "bg-black dark:bg-white border-black dark:border-white text-white dark:text-black shadow-xl"
+                          : isOutOfStock
+                            ? "border-gray-50 dark:border-zinc-900 text-gray-200 dark:text-zinc-800 cursor-not-allowed"
+                            : "border-gray-100 dark:border-zinc-800 text-gray-700 dark:text-gray-300 hover:border-indigo-500"
                           }`}
                       >
                         {size}

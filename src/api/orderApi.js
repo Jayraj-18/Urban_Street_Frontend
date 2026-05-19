@@ -20,5 +20,5 @@ export const verifyPayment = (paymentData) =>
 export const getAllOrders = () => axiosInstance.get("/orders");
 
 // Admin: Update order status
-export const updateOrderStatus = (id, status) => 
+export const updateOrderStatus = (id, status) =>
   axiosInstance.put(`/orders/${id}/status`, { status });
