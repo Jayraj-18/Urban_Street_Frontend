@@ -2,13 +2,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { getProduct } from "../api/productApi";
-import useScrollReveal from "../hooks/ScrollReveal";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 import { useState, useEffect } from "react";
 
 function ProductDetails({ darkMode, setDarkMode }) {
-  const [ref, isVisible] = useScrollReveal();
+
   const { id } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useCart();
@@ -113,9 +112,8 @@ function ProductDetails({ darkMode, setDarkMode }) {
                 <button
                   key={idx}
                   onClick={() => setActiveImage(img)}
-                  className={`w-20 h-24 md:w-24 md:h-32 rounded-2xl overflow-hidden border-2 transition-all duration-300 flex-shrink-0 ${
-                    activeImage === img ? "border-black dark:border-white scale-95 shadow-lg" : "border-transparent opacity-60 hover:opacity-100"
-                  }`}
+                  className={`w-20 h-24 md:w-24 md:h-32 rounded-2xl overflow-hidden border-2 transition-all duration-300 flex-shrink-0 ${activeImage === img ? "border-black dark:border-white scale-95 shadow-lg" : "border-transparent opacity-60 hover:opacity-100"
+                    }`}
                 >
                   <img src={img} alt="Angle" className="w-full h-full object-cover" />
                 </button>
@@ -135,22 +133,21 @@ function ProductDetails({ darkMode, setDarkMode }) {
               <div className="flex items-center flex-wrap gap-4">
                 <span className="text-3xl font-black text-black dark:text-white">₹{product.price}</span>
                 <span className="text-xs font-bold text-gray-400 uppercase line-through italic">₹{Math.floor(product.price * 1.4)}</span>
-                <span className={`text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full border ${
-                  (() => {
-                    const stockVal = selectedSize && product.stock && typeof product.stock === 'object' 
-                      ? product.stock[selectedSize] 
+                <span className={`text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full border ${(() => {
+                    const stockVal = selectedSize && product.stock && typeof product.stock === 'object'
+                      ? product.stock[selectedSize]
                       : (typeof product.stock === 'number' ? product.stock : 0);
-                    return stockVal <= 3 
-                      ? "text-red-500 border-red-500/20 bg-red-500/5 animate-pulse" 
+                    return stockVal <= 3
+                      ? "text-red-500 border-red-500/20 bg-red-500/5 animate-pulse"
                       : "text-indigo-500 border-indigo-500/20 bg-indigo-500/5";
                   })()
-                }`}>
+                  }`}>
                   {(() => {
                     if (!selectedSize) return "Select a size to see stock";
-                    const stockVal = product.stock && typeof product.stock === 'object' 
-                      ? product.stock[selectedSize] 
+                    const stockVal = product.stock && typeof product.stock === 'object'
+                      ? product.stock[selectedSize]
                       : (typeof product.stock === 'number' ? product.stock : 0);
-                    
+
                     if (stockVal === undefined || stockVal <= 0) return "Size Out of Stock";
                     return `${stockVal} pieces left`;
                   })()}
@@ -178,13 +175,12 @@ function ProductDetails({ darkMode, setDarkMode }) {
                         key={size}
                         disabled={isOutOfStock}
                         onClick={() => setSelectedSize(size)}
-                        className={`aspect-square flex items-center justify-center rounded-2xl border-2 transition-all duration-300 font-black text-xs uppercase relative overflow-hidden ${
-                          selectedSize === size
+                        className={`aspect-square flex items-center justify-center rounded-2xl border-2 transition-all duration-300 font-black text-xs uppercase relative overflow-hidden ${selectedSize === size
                             ? "bg-black dark:bg-white border-black dark:border-white text-white dark:text-black shadow-xl"
                             : isOutOfStock
                               ? "border-gray-50 dark:border-zinc-900 text-gray-200 dark:text-zinc-800 cursor-not-allowed"
                               : "border-gray-100 dark:border-zinc-800 text-gray-700 dark:text-gray-300 hover:border-indigo-500"
-                        }`}
+                          }`}
                       >
                         {size}
                         {isOutOfStock && (
